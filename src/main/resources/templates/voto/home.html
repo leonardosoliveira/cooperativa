@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	
+	<div th:replace="~{base :: logo}"></div>
+
+	<div class="container">
+
+		<div th:replace="~{base :: titulo('Pautas para votação')}"></div>
+
+
+
+		<form th:action="@{/voto/novo}" th:object="${requisicaoNovoVoto}"
+			class="card-body" method="post">
+
+
+			<div class="card mb-3" th:each="pauta : ${pautas}">
+			
+				<div for="nomePauta" class="card-header alert-warning" th:text="${pauta.nomePauta}">
+					Nome Pauta</div>
+
+				<div class="card-body">
+					<div name="pautaId" ><a th:value="${pauta.id}"></a> </div>
+					
+					<div class="row">
+						<div class="col-12 col-sm-8 mb-3">
+							<div for="dataDaPauta"class="col-md=6">
+								Data da pauta <span
+									th:text="${#temporals.format(pauta.dataDaPauta, 'dd/MM/yyyy')}">
+									22/09/2021</span>
+							</div>
+							<div for="duracaoDaPauta" class="col-md=6">
+								Duração <span th:text=${pauta.duracaoDaPauta}></span>
+							</div>
+
+							<div for="descricaoDaPauta">
+								Descrição <span th:text="${pauta.descricaoDaPauta}"></span>
+							</div>
+							<div class="row">
+								<div for="statusDaPauta" class="col-md-6">
+									Status <span th:text="${pauta.statusDaPauta}"></span>
+								</div>
+							</div>
+						</div>
+						<div>
+						<button onclick="document.getElementById('input-value').value='Sim'" type="submit" class="btn btn-success btn-sm">Sim</button>
+						<button onclick="document.getElementById('input-value').value='Nao'"type="submit" class="btn btn-danger btn-sm">Não</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<input name="voto" hidden value="Sim" id='input-value'>
+			
+
+		</form>
+	</div>
+	</div>
+
+	<script>
+		function displayTime() {
+			let date = new Date();
+			let time = date.toLocaleTimeString();
+			document.querySelector('.clock').textContent = time;
+		}
+
+		displayTime();
+		const createClock = setInterval(displayTime, 1000);
+		////////////
+
+	</script>
+
+
+
+</body>
+</html>
+
+
+
+

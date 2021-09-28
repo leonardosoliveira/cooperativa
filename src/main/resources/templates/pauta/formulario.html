@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+	
+		<div th:replace="~{base :: logo}"></div>
+	
+		<div th:replace="~{base :: titulo('Nova Pauta')}"></div>
+		
+		<div class="card mt-3">
+			<form th:action="@{/pauta/nova}" th:object="${requisicaoNovaPauta}" class="card-body" method="POST">
+				<div class="form-group">
+					<label for="nomePauta">Pauta</label>
+					<input th:field="*{nomePauta}" th:errorclass="is-invalid" class="form-control" placeholder="Nome da pauta"/>
+					<div class="invalid-feedback" th:errors="*{nomePauta}">
+						Digite o nome da Pauta
+					</div>
+					
+				</div>
+				<div class="form-group">
+					<label for="duracaoPauta">Duração da Pauta</label>
+					<input th:field="*{duracaoPauta}" th:errorclass="is-invalid" class="form-control" placeholder="Duracao da pauta"/>
+					<small>Informar o tempo permitido para o voto.</small>
+					<div class="invalid-feedback" th:errors="*{duracaoPauta}">
+						Digite a duração da Pauta
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="descricaoPauta">Descrição da Pauta</label>
+					<textarea th:field="*{descricaoPauta}" th:errorclass="is-invalid" class="form-control" placeholder="Informar a necessidade desta pauta."></textarea>
+					<div class="invalid-feedback" th:errors="*{descricaoPauta}">
+						A descrição deve ser preenchida
+					</div> 
+				</div>
+				<button class="btn btn-success" type="submit">Iniciar</button>
+			
+			</form>
+		</div>
+
+	</div>
+</body>
+</html>

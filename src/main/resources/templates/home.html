@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	
+	<div th:replace="~{base :: logo}"></div>
+	
+	<div class="container">
+		
+		<div th:replace="~{base :: titulo('Sessão em andamento')}"></div>
+		
+
+		<div class="card mb-3" th:each="pauta : ${pautas}">
+			
+			<div class="card-header alert-warning" th:text="${pauta.nomePauta}" > Nome Pauta</div>
+
+			<div class="card-body">
+			<div class="row">
+				<div class="col-12 col-sm-8 mb-3">
+					<div class="row">
+						<div class="col-md=6">Data da pauta <span th:text="${#temporals.format(pauta.dataDaPauta, 'dd/MM/yyyy')}"> 22/09/2021</span></div>
+						<div class="col-md=6">Duração <span th:text=${pauta.duracaoDaPauta}></span></div>
+					</div>
+					<div>Descrição <span th:text="${pauta.descricaoDaPauta}"></span></div>
+					<div class="row">
+						<div class="col-md-6">Status <span th:text="${pauta.statusDaPauta}"></span></div>
+					</div>
+				</div>
+				
+				
+			</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
